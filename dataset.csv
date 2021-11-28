@@ -1,0 +1,30 @@
+"question","answers"
+"ls",1
+"what all files are there in the current directory",1
+"show me the list of files",1
+,
+"pwd",2
+"which directory am i in",2
+"what directory this is",2
+"What is the current directory",2
+"cd",3
+,
+,
+,
+"mkdir",4
+"make directory/ folder",4
+"i want to make a new folder",4
+,
+"rmdir",5
+"remove this folder/ directory",5
+"delete this folder/ directory",5
+,
+"CPU scheduling algorithm",6
+,
+,
+"Open Sublime",7
+,
+,
+"find ",8
+,
+"compile",9
