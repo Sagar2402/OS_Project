@@ -12,34 +12,53 @@ faq_data = pd.read_csv('/home/sagar24/OS_project/dataset.csv')
 cwd = os.getcwd()
 
 def ls():
+    #print('\n')
     cmd='ls'
     os.system(cmd)
 
 def pwd():
     #cwd = os.getcwd()
+    #print('\n')
     print("The current working directory is : {0}".format(cwd))
 
 def cd():
-    #cwd = os.getcwd()
+    '''
+    function to navigate through directories
+    '''
     global cwd
     cwd1=cwd+"/"
-    print(os.listdir(cwd1))
     while(True):
-        input1 = input("Enter the directory u want to go to else enter exit:\n")
+        #print(os.listdir(cwd))
+        input1 = input("Enter the directory u want to go to, or enter back, else enter exit:\n")
         if(input1 == "exit"):
             #print("OK")
             return
+        elif(input1 == "back"):
+            n=len(cwd)
+            cwd=cwd[0:n-1]
+            l_o_i = cwd.rindex("/") 
+            cwd = cwd[0:l_o_i]
+            cwd=cwd+"/"
+            print(cwd)
+            continue
         cwd1=cwd1+input1+"/"
         cwd=cwd1
         print(os.listdir(cwd1))
 
 def mkdir(name):
+    '''
+    function to make a new directory
+    '''
     directory=name
     parent_dir=cwd+"/"
     path=os.path.join(parent_dir,directory)
     os.mkdir(path)
 
 def rmdir():
+    '''
+    function to delete an existing directory / file
+    '''
+    #print('\n')
     mydir= input("Enter directory name: ")
     try:
         shutil.rmtree(mydir)
@@ -47,12 +66,18 @@ def rmdir():
         print("Error: %s - %s." % (e.filename, e.strerror))
 
 def exec_cpu_sche():
-    subprocess.call(["g++", "project.cpp"]) 
+    '''
+    refer cpu_sche.cpp code for the same
+    '''
+    subprocess.call(["g++", "cpu_sche.cpp"]) 
     tmp=subprocess.call("./a.out") 
-    #print ("printing result") 
-    #print (tmp) 
+    
 
 def open_sub():
+    '''
+    the function opens Sublime Text
+    the go-to text editor used during labs
+    '''
     cmd='subl'
     os.system(cmd)
 '''
@@ -67,6 +92,11 @@ def find():
             print ("mv %s %s" % (fname, os.path.join(dpath, "%04d.png" % i)))
 
 def compile():
+    '''
+    the function compiles code irrespective of the file extension
+    the current code can compile C, C++ and Java
+    '''
+    #print('\n')
     input1=input("enter the name if file:\n")
     split_tup = os.path.splitext(input1)
     print(split_tup)
@@ -96,7 +126,9 @@ def GetAnswer():
     questions is a list of questions parsed from dataset.csv
     matched questions is a list of questions that are similar to input question
     '''
-    input1 = input()
+    input1 = input('>>')
+    if(input1=="exit"):
+        return -1
     questions = faq_data['question'].values.tolist()
 
     mathed_question, score = process.extractOne(input1, questions, scorer=fuzz.token_set_ratio) # use process.extract(.. limits = 3) to get multiple close matches
@@ -105,9 +137,9 @@ def GetAnswer():
         matched_row = faq_data.loc[faq_data['question'] == mathed_question,]
         match = matched_row['question'].values[0]
         answer = matched_row['answers'].values[0]
-        print(answer.dtype)
+        #print(answer.dtype)
         response = "Question: {} \n Answer: {} \n".format(match, answer)
-        print(response)
+        #print(response)
         if answer == 1:
             ls()
         if answer == 2:
@@ -134,4 +166,8 @@ def GetAnswer():
 
     # dispatcher.utter_message(response)
 #ctrl kc and ctrl ku
-GetAnswer()
+while(True):
+    a = GetAnswer()
+    print('\n')
+    if (a==-1):
+        break;
