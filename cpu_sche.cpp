@@ -307,31 +307,31 @@ int main()
 {
     cout << "Enter number of processes: ";
     cin >> totalProcesses;
-    int arr[4][3] = {{0,8,1},{1,4,1},{2,9,1},{3,5,1}};
-    for(int i=0; i<4; i++)
-    {
-        proc[i].processID = i + 1;
-        proc[i].arrivalTime=arr[i][0];
-        proc[i].burstTime=arr[i][1];
-        proc[i].priority=arr[i][2];
-    }
-    // for (int i = 0; i < totalProcesses; i++)
+    // int arr[4][3] = {{0,8,1},{1,4,1},{2,9,1},{3,5,1}};
+    // for(int i=0; i<4; i++)
     // {
-    //     cout << "\nEnter details for procsess " << i + 1 << ": \n";
-    //     cout << "-------------------------------\n";
     //     proc[i].processID = i + 1;
-    //     cout << "Arrival Time: ";
-    //     cin >> proc[i].arrivalTime;
-    //     cout << "Burst Time: ";
-    //     cin >> proc[i].burstTime;
-    //     if (proc[i].burstTime == 0)
-    //     {
-    //         printf("ERROR: Burst Time cannot be 0.\n");
-    //         exit(0);
-    //     }
-    //     cout << "Priority: ";
-    //     cin >> proc[i].priority;
+    //     proc[i].arrivalTime=arr[i][0];
+    //     proc[i].burstTime=arr[i][1];
+    //     proc[i].priority=arr[i][2];
     // }
+    for (int i = 0; i < totalProcesses; i++)
+    {
+        cout << "\nEnter details for procsess " << i + 1 << ": \n";
+        cout << "-------------------------------\n";
+        proc[i].processID = i + 1;
+        cout << "Arrival Time: ";
+        cin >> proc[i].arrivalTime;
+        cout << "Burst Time: ";
+        cin >> proc[i].burstTime;
+        if (proc[i].burstTime == 0)
+        {
+            printf("ERROR: Burst Time cannot be 0.\n");
+            exit(0);
+        }
+        cout << "Priority: ";
+        cin >> proc[i].priority;
+    }
     FCFS();
     SJF();
 }

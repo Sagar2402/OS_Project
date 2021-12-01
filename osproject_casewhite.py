@@ -13,8 +13,9 @@ cwd = os.getcwd()
 
 def ls():
     #print('\n')
-    cmd='ls'
-    os.system(cmd)
+    global cwd
+    cwd1=cwd+"/"
+    print(os.listdir(cwd1))
 
 def pwd():
     #cwd = os.getcwd()
@@ -26,24 +27,24 @@ def cd():
     function to navigate through directories
     '''
     global cwd
-    cwd1=cwd+"/"
     while(True):
-        #print(os.listdir(cwd))
+        print('\n')
+        print(os.listdir(cwd))
+        print('\n')
         input1 = input("Enter the directory u want to go to, or enter back, else enter exit:\n")
         if(input1 == "exit"):
             #print("OK")
             return
         elif(input1 == "back"):
             n=len(cwd)
-            cwd=cwd[0:n-1]
             l_o_i = cwd.rindex("/") 
             cwd = cwd[0:l_o_i]
-            cwd=cwd+"/"
-            print(cwd)
+            cwd=cwd
+            print("The current working directory is : {0} \n".format(cwd))
             continue
-        cwd1=cwd1+input1+"/"
+        cwd1=cwd+"/"+input1
         cwd=cwd1
-        print(os.listdir(cwd1))
+        print(cwd)
 
 def mkdir(name):
     '''
